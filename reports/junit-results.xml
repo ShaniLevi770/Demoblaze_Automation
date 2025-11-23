@@ -1,6 +1,24 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="3.620283999979496">
-<testsuite name="UI\homepage.spec.js" timestamp="2025-11-23T09:43:10.132Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.18" errors="0">
-<testcase name="Home page › loads and shows main categories" classname="UI\homepage.spec.js" time="1.18">
+<testsuites id="" name="" tests="6" failures="0" skipped="0" errors="0" time="9.546451999999999">
+<testsuite name="API\login.api.spec.js" timestamp="2025-11-23T22:10:11.905Z" hostname="chromium" tests="2" failures="0" skipped="0" time="1.217" errors="0">
+<testcase name="Auth API › signup with new credentials and then login" classname="API\login.api.spec.js" time="0.767">
+</testcase>
+<testcase name="Auth API › login with wrong password returns correct error message" classname="API\login.api.spec.js" time="0.45">
+</testcase>
+</testsuite>
+<testsuite name="UI\cartpage.spec.js" timestamp="2025-11-23T22:10:11.905Z" hostname="chromium" tests="3" failures="0" skipped="0" time="22.283" errors="0">
+<testcase name="Cart &amp; Purchase › add product to cart and see it with correct total" classname="UI\cartpage.spec.js" time="6.952">
+<system-out>
+<![CDATA[Samsung galaxy s6
+]]>
+</system-out>
+</testcase>
+<testcase name="Cart &amp; Purchase › remove item from cart" classname="UI\cartpage.spec.js" time="7.805">
+</testcase>
+<testcase name="Cart &amp; Purchase › complete purchase (happy path)" classname="UI\cartpage.spec.js" time="7.526">
+</testcase>
+</testsuite>
+<testsuite name="UI\homepage.spec.js" timestamp="2025-11-23T22:10:11.905Z" hostname="chromium" tests="1" failures="0" skipped="0" time="3.928" errors="0">
+<testcase name="Home page › loads and shows main categories" classname="UI\homepage.spec.js" time="3.928">
 </testcase>
 </testsuite>
 </testsuites>

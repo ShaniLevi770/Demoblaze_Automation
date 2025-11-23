@@ -4,6 +4,8 @@ const { HomePage } = require('../pages/HomePage.js');
 const { CartPage } = require('../pages/CartPage.js');
 const { LoginPage } = require('../pages/LoginPage.js');
 const { SignupPage } = require('../pages/SignupPage.js');
+const { generateUniqueCredentials } = require('../helpers/generateCredentials.js');
+
 
 const test = base.extend({
   homePage: async ({ page }, use) => {
@@ -35,6 +37,56 @@ const test = base.extend({
     await homePage.openCart();
     await cartPage.waitForCartLoaded();
     await use({ productName });
+  },
+
+  loggedInUser: async ({ page, homePage, signupPage, loginPage }, use) => {
+    const uniqueId = Date.now();
+    const username = `testuser_${uniqueId}`;
+    const password = `Pass!${uniqueId}`;
+
+    await homePage.goto();
+
+    await homePage.openSignupModal();
+    const signupDialogPromise = page.waitForEvent('dialog');
+    await signupPage.signup(username, password);
+    const signupDialog = await signupDialogPromise;
+    expect(signupDialog.message()).toContain('Sign up successful');
+    await signupDialog.accept();
+    await page.locator('#signInModal').getByRole('button', { name: 'Close' }).click();
+
+    await homePage.openLoginModal();
+    await loginPage.login(username, password);
+
+    const welcomeUser = page.locator('#nameofuser');
+    await expect(welcomeUser).toContainText(username);
+    await use({ username, password });
+  },
+
+    // Logged-in user fixture:
+  //  - creates unique username/password
+  //  - signs up the user
+  //  - logs in
+  //  - returns { username, password } to tests
+  loggedInUser: async ({ page, homePage, signupPage, loginPage }, use) => {
+    const { username, password } = generateUniqueCredentials;
+
+
+    await homePage.goto();
+    await homePage.openSignupModal();
+
+    const signupDialogPromise = page.waitForEvent('dialog');
+    await signupPage.signup(username, password);
+    const signupDialog = await signupDialogPromise;
+    await signupDialog.accept();
+
+    await homePage.openLoginModal();
+    await loginPage.login(username, password);
+
+    const welcomeUser = page.locator('#nameofuser');
+    await expect(welcomeUser).toBeVisible();
+    await expect(welcomeUser).toContainText(username);
+
+    await use({ username, password });
   },
 });
 

@@ -1,5 +1,7 @@
 // tests/UI/cartpage.spec.js
 const { test, expect } = require('../fixtures');
+const testData = require('../../data/testData');
+
 
 test.describe('Cart & Purchase', () => {
   test('add product to cart and see it with correct total', async ({ cartPage, cartState }) => {
@@ -20,7 +22,7 @@ test.describe('Cart & Purchase', () => {
     expect(before).toBeGreaterThan(0);
 
     await cartPage.deleteFirstRow();
-    await page.waitForTimeout(1000);
+    await expect.poll(async () => await cartPage.getRowCount()).toBeLessThan(before);
 
     const after = await cartPage.getRowCount();
     expect(after).toBeLessThan(before);
@@ -31,21 +33,12 @@ test.describe('Cart & Purchase', () => {
     expect(productName).toBeTruthy();
 
     await cartPage.openPlaceOrderModal();
-    await cartPage.fillOrderForm({
-      name: 'Test User',
-      country: 'Israel',
-      city: 'Golan',
-      card: '4111111111111111',
-      month: '12',
-      year: '2030',
-    });
-
+    await cartPage.fillOrderForm(testData.checkoutData);
     await cartPage.purchase();
 
     const confirmation = page.locator('.sweet-alert');
     await expect(confirmation).toBeVisible();
     await expect(confirmation).toContainText('Thank you for your purchase');
-
     await page.getByRole('button', { name: 'OK' }).click();
   });
 });
