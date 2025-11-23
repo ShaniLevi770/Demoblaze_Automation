@@ -1,0 +1,6 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="3.620283999979496">
+<testsuite name="UI\homepage.spec.js" timestamp="2025-11-23T09:43:10.132Z" hostname="chromium" tests="1" failures="0" skipped="0" time="1.18" errors="0">
+<testcase name="Home page › loads and shows main categories" classname="UI\homepage.spec.js" time="1.18">
+</testcase>
+</testsuite>
+</testsuites>
