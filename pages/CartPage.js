@@ -38,7 +38,6 @@ class CartPage {
   }
 
   async getProductNames() {
-    //await this.waitForLoadState('networkidle');
     const count = await this.cartRows.count();
 
     const names = [];

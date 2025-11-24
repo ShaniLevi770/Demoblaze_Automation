@@ -4,7 +4,7 @@ class HomePage {
    */
   constructor(page) {
     this.page = page;
-    this.loginLink = this.page.getByText('Log in');
+    this.loginLink = this.page.locator('#login2');
     this.signupLink = this.page.getByText('Sign up');
     this.cartLink = this.page.locator('#cartur');
     this.categoryPhones = this.page.getByRole('link', { name: 'Phones' });

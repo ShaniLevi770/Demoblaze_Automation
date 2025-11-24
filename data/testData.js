@@ -14,7 +14,7 @@ module.exports = {
     password: "1234"
   },
 
-  checkoutData: {
+  placeOrderFillForemData: {
     name: "Test User",
     country: "Israel",
     city: "Golan",

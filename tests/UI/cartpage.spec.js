@@ -14,7 +14,7 @@ test.describe('Cart & Purchase', () => {
   });
 
 
-  test('remove item from cart', async ({ page, cartPage, cartState }) => {
+  test('remove item from cart', async ({ cartPage, cartState }) => {
     const { productName } = cartState;
     expect(productName).toBeTruthy();
 
@@ -33,7 +33,7 @@ test.describe('Cart & Purchase', () => {
     expect(productName).toBeTruthy();
 
     await cartPage.openPlaceOrderModal();
-    await cartPage.fillOrderForm(testData.checkoutData);
+    await cartPage.fillOrderForm(testData.placeOrderFillForemData);
     await cartPage.purchase();
 
     const confirmation = page.locator('.sweet-alert');

@@ -1,4 +1,3 @@
-
 const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
@@ -9,6 +8,7 @@ module.exports = defineConfig({
     timeout: 5 * 1000,
   },
 
+
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
@@ -17,7 +17,7 @@ module.exports = defineConfig({
   // Reports
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'reports/playwright-report', open: 'allways' }],
+    ['html', { outputFolder: 'reports/playwright-report', open: 'always' }],
     ['junit', { outputFile: 'reports/junit-results.xml' }],
   ],
 

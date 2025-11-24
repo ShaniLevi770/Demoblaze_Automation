@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "playwright test"
+    "test": "playwright test",
+    "test:report:on-failure": "npx playwright test -c playwright.on-failure-report.config.js",
+    "test:report:always": "npx playwright test -c playwright.always-report.config.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +14,8 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "@types/node": "^24.10.1"
+    "@types/node": "^24.10.1",
+    "dotenv": "^17.2.3"
   },
   "dependencies": {
     "uuid": "^13.0.0"
