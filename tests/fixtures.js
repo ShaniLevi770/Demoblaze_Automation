@@ -62,13 +62,13 @@ const test = base.extend({
     await use({ username, password });
   },
 
-    // Logged-in user fixture:
+  // Logged-in user fixture:
   //  - creates unique username/password
   //  - signs up the user
   //  - logs in
   //  - returns { username, password } to tests
   loggedInUser: async ({ page, homePage, signupPage, loginPage }, use) => {
-    const { username, password } = generateUniqueCredentials;
+    const { username, password } = generateUniqueCredentials();
 
 
     await homePage.goto();

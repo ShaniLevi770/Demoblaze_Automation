@@ -33,7 +33,7 @@ test.describe('Auth API', () => {
     data: { username, password },
   });
 
-  //normally we would expect a 401 status code for wrong password-
+  // would expect a 401 status code for wrong password-
   // but in demoblaze it returns 200 with error message in body
   expect(login.ok()).toBeTruthy();
   expect(login.status()).toBe(200); 

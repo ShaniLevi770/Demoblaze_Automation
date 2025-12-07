@@ -30,8 +30,7 @@ class CartPage {
   }
 
   async waitForCartLoaded() {
-    await this.page.waitForSelector('#tbodyid', { state: 'visible' });
-    await this.page.waitForSelector('#tbodyid tr');
+    await this.cartRows.first().waitFor({ state: 'visible' });
   }
   async getRowCount() {
     return await this.cartRows.count();
@@ -43,9 +42,8 @@ class CartPage {
     const names = [];
     for (let i = 0; i < count; i++) {
       const row = this.cartRows.nth(i);
-      const nameCell = row.locator('td').nth(1); 
+      const nameCell = row.locator('td').nth(1);
       const name = (await nameCell.textContent()).trim();
-      console.log(name)
       names.push(name);
     }
     return names;
@@ -59,7 +57,7 @@ class CartPage {
 
   async deleteFirstRow() {
     const firstRow = this.cartRows.first();
-    const deleteLink = firstRow.getByText('Delete');
+    const deleteLink = firstRow.getByRole('link', { name: /delete/i });
     await deleteLink.click();
   }
 
